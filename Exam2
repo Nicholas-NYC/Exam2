@@ -1,1 +1,107 @@
+#1 
+model_1 <- lm(EMPHI ~ dat_use$EDUC
+              )
+
+
+
+
+#  Here we are looking at if there is a relationship between education and and Health insurance.
+#  With the values of provided we know the level of significance.  The null hypotheses states there is no
+#  Relationship of level of education on the Health insurance provide.  The P values will determine is that
+#  this will be rejected or accepted. 
+
+
+#2
+1/(1+(exp(1))^(-1.84+(-0.019*30) + (0.00002*(30)^2) + (-0.470*1) + (-0.019*(30)*(-0.470*1))+(0.00002 *(30)^2)*(0.470*1)))
+ 
+#2a The Probability is .07
+
+#2b This would be .93
+
+#2c Age^2 would make the graph non-linear 
+
+
+
+
+
+summary(data_NHIS)
+summary(data_NHIS$AGE)
+summary(data_NHIS$EMPHI)
+summary(data_NHIS$REGION)
+list(data_NHIS$REGION)
+
+use_varb <- (data_NHIS$REGION == "Northeast") & (data_NHIS$AGE >=30) & (data_NHIS$AGE <=65) & (data_NHIS$HOURSWRK >= 30)
+dat_use <- subset(data_NHIS,use_varb)
+summary(dat_use)
+
+dat_use$YES_CITIZEN <- (dat_use$CITIZEN == "yes US citizen")
+
+
+
+summary(dat_use$YES_CITIZEN)
+
+#  This group is interesting because they are mostly RACEA "white"  This subset is also mostly "Not Hispanic" and has a 
+#  SEXORIEN or "Straight" also most are MARST "Married".  Also of interest is the are diverse in the URBRRL location of where they are. Note this is 
+#  for people who are in the Northeast region that are between the 30:65 and working 30 hours or more. 
+
+HYPO_LM <- lm(YES_CITIZEN ~ SEX,
+                data = dat_use)
+
+summary(HYPO_LM)
+
+
+###  We know that SEXFemale is significant based on the stars at a level of .001,  We also know that based on the P values we must reject the NUll HYPO
+###  in favor of the alternative hypotheses which is that sex has a influence on the citizen status from the model.
+
+
+
+to_be_predicted2 <- data.frame(SEX = "Female"
+                               )
+summary(dat_use$SEX)
+to_be_predicted2$yhat <- predict(HYPO_LM,type = "response", newdata = to_be_predicted2)
+
+summary(to_be_predicted2$yhat)
+
+###  My model will have a .95 probability of prediction.
+
+Logit <- glm( YES_CITIZEN ~ SEX, family = binomial, 
+              data = dat_use)
+summary(Logit)
+
+###  Based on the levels of significance we know that SEXFemale is significant based on the our star indicator.
+###  WE also know that we must reject null at .01 and in favor of the alternative which states there is a relationship.
+
+
+
+to_be_predicted3 <- data.frame(SEX = "Female")
+
+to_be_predicted3$yhat <- predict(Logit,type = "response", newdata = to_be_predicted3)
+
+summary(to_be_predicted3$yhat)
+
+###  We can know what the prediction that with a .9542 certain correct in our Logit model which is almost identical to previous
+
+
+set.seed(1)
+index<-sample(x=2,size=nrow(dat_use),replace=TRUE,prob=c(0.7,0.3))
+train<-dat_use[index==1,]
+test<-dat_use[index==2,]
+dim(dat_use)
+dim(train)
+dim(test)
+trainmodel<-glm(YES_CITIZEN ~ SEX ,
+                family = binomial, data = dat_use)
+
+summary(Logit)
+
+prob<-predict(object=trainmodel,newdata=test,type="response")
+pred<-cbind(test,prob)
+pred<-transform(pred,predict=ifelse(prob<=0.5,0,1))
+ta<-table(pred$YES_CITIZEN,pred$predict)
+ta
+sum_diag<-sum(diag(ta))
+sum<-sum(ta)
+sum_diag/sum
+
+#  We can not make a determination on the confustion materix. We dont konw the type 1 errors but type 2 is 583. and a .07 probability.
 
