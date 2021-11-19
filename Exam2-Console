@@ -1,1 +1,310 @@
+> #1 
+> model_1 <- lm(EMPHI ~ dat_use$EDUC
++               )
+Error in eval(predvars, data, env) : object 'EMPHI' not found
+> #2
+> 1/(1+(exp(1))^(-1.84+(-0.019*30) + (0.00002*(30)^2) + (-0.470*1) + (-0.019*(30)*(-0.470*1))+(0.00002 *(30)^2)*(0.470*1)))
+[1] 0.9299317
+> summary(data_NHIS)
+       REGION                      URBRRL           AGE               SEX                  SEXORIEN               MARST      
+ Northeast: 6604   Large central metro:10990   Min.   :  0.0   Male     :17487   straight      :29361   Married      :13996  
+ Midwest  : 8393   Large fringe metro : 8984   1st Qu.: 29.0   Female   :19865   NIU           : 5790   never married: 7191  
+ South    :12929   Med or small metro :11927   Median : 49.0   Refused  :    5   NA            :  625   NIU          : 5790  
+ West     : 9432   nonmetropolitan    : 5457   Mean   : 48.4   dont know:    1   Lesbian or gay:  571   Divorced     : 4899  
+                                               3rd Qu.: 66.0                     bisexual      :  407   Widowed      : 3238  
+                                               Max.   :999.0                     dont know     :  255   unknown      : 1052  
+                                                                                 (Other)       :  349   (Other)      : 1192  
+    FAMSIZE                  RACEA                 HISPETH                        YRSINUS                   CITIZEN     
+ Min.   :1.000   white          :28047   Not Hispanic  :32179   NIU                   :32478   No not US citizen: 1897  
+ 1st Qu.:1.000   Black          : 3916   Mexican       : 2935   Less than 1 year in US:   26   yes US citizen   :34676  
+ Median :2.000   Asian          : 2090   Other Hispanic: 2183   1-5 years in US       :  398   refused          :   76  
+ Mean   :2.491   not ascertained: 1928   NA            :   61   5-10 years in US      :  478   NA               :  697  
+ 3rd Qu.:3.000   Other          :  679                          10-15 yr in US        :  462   dont know        :   12  
+ Max.   :6.000   American Indian:  378                          15 or more yr in US   : 3394                            
+ NA's   :81      (Other)        :  320                          NA                    :  122                            
+                 EDUC              EMPSTAT         HOURSWRK                                             EMPHI      
+ bachelors         :7406   NIU         : 5790   Min.   : 0.00   NIU                                        :19978  
+ HS diploma        :6823   Employed    :17406   1st Qu.: 0.00   no workplace did not offer health insurance: 4886  
+ NIU               :5790   not employed:13191   Median : 0.00   yes workplace offer health insurance       :12404  
+ some college      :4971   dont know   :  971   Mean   :18.19   refused                                    :   19  
+ masters           :3723                        3rd Qu.:40.00   NA                                         :   24  
+ assoc deg academic:2916                        Max.   :95.00   dont know                                  :   47  
+ (Other)           :5729                        NA's   :245                                                        
+       EMPFT         FAMTOTINC            HEALTH          HEIGHT          WEIGHT         BMICALC     
+ NIU      :19954   Min.   :     0   excellent:11071   Min.   : 0.00   Min.   :  0.0   Min.   :11.50  
+ parttime : 2752   1st Qu.: 35000   very good:12269   1st Qu.:63.00   1st Qu.:135.0   1st Qu.:23.30  
+ fulltime :14473   Median : 65000   good     : 9342   Median :66.00   Median :165.0   Median :26.60  
+ refused  :   11   Mean   : 83108   fair     : 3576   Mean   :61.02   Mean   :158.3   Mean   :27.33  
+ NA       :  157   3rd Qu.:110978   poor     : 1080   3rd Qu.:69.00   3rd Qu.:195.0   3rd Qu.:30.70  
+ dont know:   11   Max.   :250000   refused  :   11   Max.   :76.00   Max.   :299.0   Max.   :53.90  
+                                    dont know:    9   NA's   :2217    NA's   :2825    NA's   :5962   
+                         HINOTCOVE                              ARMEDFORCES   
+ has health insurance coverage:34595   NIU                            : 5790  
+ no health insurance coverage : 2682   No never active duty           :27442  
+ dont know                    :   81   active only for training       :  544  
+                                       yes ever served in armed forces: 2629  
+                                       refused                        :   20  
+                                       NA                             :  931  
+                                       dont know                      :    2  
+> summary(data_NHIS$AGE)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    0.0    29.0    49.0    48.4    66.0   999.0 
+> summary(data_NHIS$EMPHI)
+                                        NIU no workplace did not offer health insurance 
+                                      19978                                        4886 
+       yes workplace offer health insurance                                     refused 
+                                      12404                                          19 
+                                         NA                                   dont know 
+                                         24                                          47 
+> summary(data_NHIS$REGION)
+Northeast   Midwest     South      West 
+     6604      8393     12929      9432 
+> list(data_NHIS$REGION)
+[[1]]
+   [1] South     West      Midwest   South     South     Midwest   Northeast West      South     South     Northeast Northeast
+  [13] Northeast South     West      West      South     Midwest   South     South     South     West      West      South    
+  [25] South     West      West      West      Northeast West      South     South     West      West      South     South    
+  [37] South     West      Midwest   Midwest   Midwest   South     Northeast South     South     South     South     South    
+  [49] West      Northeast West      West      South     Midwest   Midwest   Northeast Northeast South     South     South    
+  [61] Midwest   West      South     Northeast Midwest   Midwest   South     Northeast Midwest   Midwest   South     Northeast
+  [73] Northeast West      Midwest   Northeast Northeast Northeast West      South     South     Midwest   West      West     
+  [85] Midwest   West      West      West      Midwest   West      Midwest   Midwest   South     South     West      West     
+  [97] Midwest   South     South     West      Northeast Northeast West      West      Midwest   South     Midwest   South    
+ [109] South     South     Northeast Northeast Midwest   South     South     Northeast South     West      South     Northeast
+ [121] West      South     South     West      South     Northeast West      West      Midwest   Midwest   West      South    
+ [133] South     Midwest   West      West      Northeast West      Midwest   South     West      Midwest   South     West     
+ [145] South     South     South     West      West      Midwest   Midwest   West      South     South     South     South    
+ [157] South     West      South     Northeast West      West      West      West      West      West      West      Midwest  
+ [169] South     South     West      Northeast Midwest   South     South     Northeast West      West      West      Northeast
+ [181] Northeast South     Northeast West      South     West      South     South     Midwest   South     South     South    
+ [193] South     South     West      South     West      West      South     South     South     Midwest   South     South    
+ [205] South     West      South     West      Midwest   West      West      West      West      South     South     South    
+ [217] West      South     South     South     South     South     South     Northeast South     South     Midwest   Midwest  
+ [229] Northeast Midwest   Northeast West      West      West      South     West      Midwest   Northeast Northeast West     
+ [241] Midwest   South     South     West      Midwest   Northeast Northeast Northeast Midwest   West      West      South    
+ [253] Northeast Midwest   South     South     Northeast West      Midwest   West      West      Northeast West      West     
+ [265] West      Northeast Northeast Northeast South     South     South     South     South     Midwest   Northeast South    
+ [277] South     West      South     South     Northeast Northeast South     Midwest   Northeast Northeast Northeast Midwest  
+ [289] South     West      Midwest   Midwest   West      West      Midwest   Midwest   South     Northeast Northeast Midwest  
+ [301] South     South     South     South     South     South     South     Northeast South     West      West      South    
+ [313] South     West      South     Northeast West      West      Northeast Northeast Northeast Northeast South     South    
+ [325] West      South     Northeast West      South     South     South     South     South     South     Northeast West     
+ [337] West      Northeast Northeast West      Northeast South     Northeast Northeast Midwest   Midwest   West      West     
+ [349] West      Midwest   West      West      West      Midwest   West      Midwest   South     South     Midwest   West     
+ [361] Midwest   South     Midwest   South     Northeast Northeast Northeast Northeast Northeast West      South     South    
+ [373] Midwest   Northeast South     South     West      West      Midwest   South     Midwest   South     Midwest   South    
+ [385] South     West      South     West      South     West      West      Midwest   West      South     Northeast Midwest  
+ [397] Northeast Northeast West      West      Midwest   Midwest   South     Midwest   West      South     Midwest   West     
+ [409] South     South     Northeast Midwest   Midwest   Northeast South     Northeast Northeast West      South     South    
+ [421] Midwest   West      Northeast Northeast Northeast Midwest   West      South     Northeast Midwest   Northeast Midwest  
+ [433] West      West      West      Midwest   Midwest   West      West      Northeast West      West      Midwest   Northeast
+ [445] Northeast South     Northeast West      West      South     Midwest   Northeast West      Midwest   Northeast Northeast
+ [457] South     Northeast South     South     South     South     South     South     South     South     South     South    
+ [469] Northeast West      Midwest   West      West      South     Midwest   South     Northeast South     West      South    
+ [481] Northeast Northeast Northeast Northeast South     Northeast Midwest   Northeast Northeast South     Northeast South    
+ [493] Midwest   Northeast Northeast South     South     West      West      South     Northeast Midwest   South     West     
+ [505] Midwest   Northeast Midwest   Midwest   Midwest   Northeast West      Midwest   South     South     South     Midwest  
+ [517] Northeast Northeast Midwest   Midwest   West      Northeast Northeast Northeast Midwest   South     Midwest   Northeast
+ [529] Northeast West      West      West      South     South     Midwest   Midwest   Midwest   South     South     South    
+ [541] Northeast Midwest   Midwest   Midwest   Northeast Northeast Midwest   Midwest   Midwest   West      Northeast Northeast
+ [553] South     Midwest   South     South     Midwest   Midwest   Midwest   Midwest   Northeast West      South     Midwest  
+ [565] South     South     South     Midwest   South     Northeast Northeast Midwest   West      West      West      West     
+ [577] South     South     Midwest   South     Midwest   South     Midwest   West      West      West      West      Northeast
+ [589] South     South     South     West      South     West      South     South     South     South     Northeast Midwest  
+ [601] South     West      Northeast South     Northeast South     West      West      West      South     West      Midwest  
+ [613] Northeast Northeast South     West      Midwest   Northeast Northeast Midwest   Midwest   West      South     Midwest  
+ [625] Midwest   Midwest   Midwest   Northeast South     South     South     South     South     Northeast South     Northeast
+ [637] Northeast South     West      South     South     South     Midwest   South     West      South     South     South    
+ [649] Midwest   Northeast West      West      Northeast South     West      West      West      Northeast West      Northeast
+ [661] West      West      West      West      West      South     South     South     West      Midwest   Northeast West     
+ [673] Midwest   West      South     West      South     South     Midwest   West      Midwest   South     South     South    
+ [685] Northeast South     West      West      South     South     West      South     South     South     Northeast South    
+ [697] Midwest   Northeast Northeast South     Midwest   South     Midwest   West      West      West      Midwest   Northeast
+ [709] South     West      West      West      South     South     West      Northeast Northeast Northeast Midwest   Northeast
+ [721] Midwest   Midwest   Midwest   Northeast West      South     South     Northeast West      West      Midwest   South    
+ [733] South     Northeast West      South     South     Northeast Northeast Northeast South     Northeast Northeast South    
+ [745] Northeast Northeast South     Northeast Northeast Midwest   South     South     Northeast Northeast Northeast Northeast
+ [757] Northeast South     South     South     Northeast West      Midwest   West      South     West      Northeast Northeast
+ [769] South     Midwest   South     West      South     Northeast Northeast South     South     South     West      Northeast
+ [781] Midwest   Midwest   Midwest   South     South     Midwest   West      West      South     South     South     South    
+ [793] Northeast West      West      South     Northeast Northeast Midwest   Midwest   South     Midwest   Midwest   Midwest  
+ [805] Northeast West      Northeast South     Midwest   South     West      West      Northeast West      West      South    
+ [817] South     South     Northeast South     South     West      Northeast Midwest   South     West      South     South    
+ [829] South     Midwest   South     South     West      West      West      West      West      South     South     South    
+ [841] Northeast South     West      Northeast South     Midwest   Midwest   Northeast Northeast Midwest   South     South    
+ [853] Midwest   Midwest   Midwest   South     West      West      West      West      Midwest   Northeast West      West     
+ [865] Midwest   South     South     South     Midwest   Midwest   South     West      West      Midwest   South     South    
+ [877] Midwest   Midwest   Midwest   South     West      Northeast Northeast West      South     West      South     South    
+ [889] South     South     Northeast South     South     South     South     Midwest   South     South     Midwest   Midwest  
+ [901] West      South     South     South     South     Northeast South     West      South     West      South     South    
+ [913] South     Midwest   Northeast Midwest   Northeast Midwest   Midwest   Midwest   South     Midwest   West      Northeast
+ [925] Northeast West      Northeast Midwest   South     South     South     Midwest   South     Midwest   South     Midwest  
+ [937] Midwest   South     South     South     West      Northeast South     South     Midwest   South     South     Midwest  
+ [949] Midwest   Midwest   Midwest   Midwest   Midwest   Midwest   West      South     Midwest   Northeast Midwest   Northeast
+ [961] Northeast Northeast Midwest   West      South     South     West      Midwest   Midwest   South     South     Northeast
+ [973] West      Midwest   South     South     South     South     Midwest   Midwest   South     Midwest   South     West     
+ [985] South     South     South     South     Midwest   Midwest   South     Northeast Northeast South     Midwest   West     
+ [997] Midwest   Northeast West      Northeast
+ [ reached getOption("max.print") -- omitted 36358 entries ]
+Levels: Northeast Midwest South West
 
+> use_varb <- (data_NHIS$REGION == "Northeast") & (data_NHIS$AGE >=30) & (data_NHIS$AGE <=65) & (data_NHIS$HOURSWRK >= 30)
+> dat_use <- subset(data_NHIS,use_varb)
+> summary(dat_use)
+       REGION                     URBRRL         AGE               SEX                 SEXORIEN   
+ Northeast:2085   Large central metro:621   Min.   :30.00   Male     :1103   straight      :1967  
+ Midwest  :   0   Large fringe metro :767   1st Qu.:38.00   Female   : 982   Lesbian or gay:  61  
+ South    :   0   Med or small metro :553   Median :48.00   Refused  :   0   bisexual      :  19  
+ West     :   0   nonmetropolitan    :144   Mean   :47.33   dont know:   0   dont know     :  15  
+                                            3rd Qu.:56.00                    something else:  13  
+                                            Max.   :65.00                    refused       :  10  
+                                                                             (Other)       :   0  
+                      MARST         FAMSIZE                  RACEA                HISPETH                       YRSINUS    
+ Married                 :1144   Min.   :1.000   white          :1630   Not Hispanic  :1867   NIU                   :1666  
+ never married           : 474   1st Qu.:2.000   Black          : 198   Mexican       :  21   Less than 1 year in US:   2  
+ Divorced                : 320   Median :2.000   Asian          : 138   Other Hispanic: 195   1-5 years in US       :  23  
+ Married spouse not there:  54   Mean   :2.504   not ascertained:  83   NA            :   2   5-10 years in US      :  41  
+ Widowed                 :  39   3rd Qu.:3.000   Other          :  18                         10-15 yr in US        :  48  
+ Separated               :  38   Max.   :6.000   American Indian:   8                         15 or more yr in US   : 295  
+ (Other)                 :  16   NA's   :9       (Other)        :  10                         NA                    :  10  
+              CITIZEN                     EDUC             EMPSTAT        HOURSWRK    
+ No not US citizen: 132   bachelors         :606   NIU         :   0   Min.   :30.00  
+ yes US citizen   :1950   masters           :413   Employed    :2085   1st Qu.:40.00  
+ refused          :   2   HS diploma        :394   not employed:   0   Median :40.00  
+ NA               :   0   some college      :211   dont know   :   0   Mean   :43.77  
+ dont know        :   1   assoc deg academic:193                       3rd Qu.:48.00  
+                          doctoral          : 83                       Max.   :95.00  
+                          (Other)           :185                                      
+                                         EMPHI            EMPFT        FAMTOTINC            HEALTH        HEIGHT     
+ NIU                                        :   0   NIU      :   0   Min.   :     0   excellent:628   Min.   :59.00  
+ no workplace did not offer health insurance: 340   parttime :  97   1st Qu.: 60000   very good:862   1st Qu.:64.00  
+ yes workplace offer health insurance       :1736   fulltime :1987   Median :100000   good     :483   Median :67.00  
+ refused                                    :   1   refused  :   0   Mean   :114228   fair     : 95   Mean   :67.23  
+ NA                                         :   4   NA       :   0   3rd Qu.:155000   poor     : 16   3rd Qu.:70.00  
+ dont know                                  :   4   dont know:   1   Max.   :250000   refused  :  1   Max.   :76.00  
+                                                                                      dont know:  0   NA's   :116    
+     WEIGHT         BMICALC                              HINOTCOVE                             ARMEDFORCES  
+ Min.   :100.0   Min.   :16.10   has health insurance coverage:1986   NIU                            :   0  
+ 1st Qu.:150.0   1st Qu.:24.20   no health insurance coverage :  96   No never active duty           :1980  
+ Median :177.5   Median :27.10   dont know                    :   3   active only for training       :  23  
+ Mean   :180.1   Mean   :27.85                                        yes ever served in armed forces:  82  
+ 3rd Qu.:200.0   3rd Qu.:31.00                                        refused                        :   0  
+ Max.   :295.0   Max.   :50.50                                        NA                             :   0  
+ NA's   :153     NA's   :159                                          dont know                      :   0  
+> dat_use$YES_CITIZEN <- (dat_use$CITIZEN == "yes US citizen")
+> summary(dat_use$YES_CITIZEN)
+   Mode   FALSE    TRUE 
+logical     135    1950 
+> HYPO_LM <- lm(YES_CITIZEN ~ SEX,
++                 data = dat_use)
+> summary(HYPO_LM)
+
+Call:
+lm(formula = YES_CITIZEN ~ SEX, data = dat_use)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.95418  0.04582  0.04582  0.08160  0.08160 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.918404   0.007394  124.22  < 2e-16 ***
+SEXFemale   0.035771   0.010773    3.32 0.000915 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2456 on 2083 degrees of freedom
+Multiple R-squared:  0.005265,	Adjusted R-squared:  0.004787 
+F-statistic: 11.02 on 1 and 2083 DF,  p-value: 0.0009147
+
+> to_be_predicted2 <- data.frame(SEX = "Female"
++                                )
+> summary(dat_use$SEX)
+     Male    Female   Refused dont know 
+     1103       982         0         0 
+> to_be_predicted2$yhat <- predict(HYPO_LM,type = "response", newdata = to_be_predicted2)
+> summary(to_be_predicted2$yhat)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.9542  0.9542  0.9542  0.9542  0.9542  0.9542 
+> Logit <- glm( YES_CITIZEN ~ SEX, family = binomial, 
++               data = dat_use)
+> summary(Logit)
+
+Call:
+glm(formula = YES_CITIZEN ~ SEX, family = binomial, data = dat_use)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4831   0.3063   0.3063   0.4126   0.4126  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   2.4209     0.1100   22.01  < 2e-16 ***
+SEXFemale     0.6152     0.1881    3.27  0.00107 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1000.12  on 2084  degrees of freedom
+Residual deviance:  988.89  on 2083  degrees of freedom
+AIC: 992.89
+
+Number of Fisher Scoring iterations: 5
+
+> to_be_predicted3 <- data.frame(SEX = "Female")
+> to_be_predicted3$yhat <- predict(Logit,type = "response", newdata = to_be_predicted3)
+> summary(to_be_predicted3$yhat)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.9542  0.9542  0.9542  0.9542  0.9542  0.9542 
+> set.seed(1)
+> index<-sample(x=2,size=nrow(dat_use),replace=TRUE,prob=c(0.7,0.3))
+> train<-dat_use[index==1,]
+> test<-dat_use[index==2,]
+> dim(dat_use)
+[1] 2085   24
+> dim(train)
+[1] 1458   24
+> dim(test)
+[1] 627  24
+> trainmodel<-glm(YES_CITIZEN ~ SEX ,
++                 family = binomial, data = dat_use)
+> summary(Logit)
+
+Call:
+glm(formula = YES_CITIZEN ~ SEX, family = binomial, data = dat_use)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4831   0.3063   0.3063   0.4126   0.4126  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   2.4209     0.1100   22.01  < 2e-16 ***
+SEXFemale     0.6152     0.1881    3.27  0.00107 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1000.12  on 2084  degrees of freedom
+Residual deviance:  988.89  on 2083  degrees of freedom
+AIC: 992.89
+
+Number of Fisher Scoring iterations: 5
+
+> prob<-predict(object=trainmodel,newdata=test,type="response")
+> pred<-cbind(test,prob)
+> pred<-transform(pred,predict=ifelse(prob<=0.5,0,1))
+> ta<-table(pred$YES_CITIZEN,pred$predict)
+> ta
+       
+          1
+  FALSE  44
+  TRUE  583
+> sum_diag<-sum(diag(ta))
+> sum<-sum(ta)
+> sum_diag/sum
+[1] 0.07017544
+> 
+> #  We can not make a determination on the confustion materix. We dont konw the type 1 errors but type 2 is 583. and a .07 probability.
